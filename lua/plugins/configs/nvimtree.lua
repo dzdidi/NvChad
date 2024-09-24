@@ -28,15 +28,18 @@ local options = {
   actions = {
     open_file = {
       resize_window = true,
+      window_picker = {
+        enable = true
+      }
     },
   },
   renderer = {
-    root_folder_label = false,
+    root_folder_label = true,
     highlight_git = false,
     highlight_opened_files = "none",
 
     indent_markers = {
-      enable = false,
+      enable = true,
     },
 
     icons = {

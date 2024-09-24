@@ -16,7 +16,7 @@ M.general = {
   },
 
   n = {
-    ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
+    ["<CR>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
     ["<C-l>"] = { "<C-w>l", "Window right" },
@@ -52,6 +52,18 @@ M.general = {
       end,
       "LSP formatting",
     },
+    ["]t"] = {
+      function()
+        require("todo-comments").jump_next()
+      end,
+      "Next todo comment"
+    },
+    ["[t"] = {
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      "Previous todo comment"
+    },
   },
 
   t = {
@@ -70,7 +82,7 @@ M.general = {
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     -- Don't copy the replaced text after pasting in visual mode
     -- https://vim.fandom.com/wiki/Replace_a_word_with_yanked_text#Alternative_mapping_for_paste
-    ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
+    -- ["p"] = { 'p:let @+=@0<CR>:let @"=@0<CR>', "Dont copy replaced text", opts = { silent = true } },
   },
 }
 
@@ -277,6 +289,7 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    -- ["<leader>ft"] = { "<cmd> TodoTelescope <CR>", "Find TODO comments" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
@@ -292,72 +305,72 @@ M.telescope = {
   },
 }
 
-M.nvterm = {
-  plugin = true,
-
-  t = {
-    -- toggle in terminal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
-    },
-  },
-
-  n = {
-    -- toggle in normal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
-    },
-
-    -- new
-    ["<leader>h"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "New horizontal term",
-    },
-
-    ["<leader>v"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "New vertical term",
-    },
-  },
-}
+-- M.nvterm = {
+--   plugin = true,
+-- 
+--   t = {
+--     -- toggle in terminal mode
+--     ["<A-i>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "float"
+--       end,
+--       "Toggle floating term",
+--     },
+-- 
+--     ["<A-h>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "horizontal"
+--       end,
+--       "Toggle horizontal term",
+--     },
+-- 
+--     ["<A-v>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "vertical"
+--       end,
+--       "Toggle vertical term",
+--     },
+--   },
+-- 
+--   n = {
+--     -- toggle in normal mode
+--     ["<A-i>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "float"
+--       end,
+--       "Toggle floating term",
+--     },
+-- 
+--     ["<A-h>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "horizontal"
+--       end,
+--       "Toggle horizontal term",
+--     },
+-- 
+--     ["<A-v>"] = {
+--       function()
+--         require("nvterm.terminal").toggle "vertical"
+--       end,
+--       "Toggle vertical term",
+--     },
+-- 
+--     -- new
+--     ["<leader>h"] = {
+--       function()
+--         require("nvterm.terminal").new "horizontal"
+--       end,
+--       "New horizontal term",
+--     },
+-- 
+--     ["<leader>v"] = {
+--       function()
+--         require("nvterm.terminal").new "vertical"
+--       end,
+--       "New vertical term",
+--     },
+--   },
+-- }
 
 M.whichkey = {
   plugin = true,
@@ -464,5 +477,4 @@ M.gitsigns = {
     },
   },
 }
-
 return M
