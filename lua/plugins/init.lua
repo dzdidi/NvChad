@@ -266,7 +266,7 @@ local default_plugins = {
     },
     ---@type Ollama.Config
     opts = {
-      model = "mixtral",
+      model = "codellama:70b",
       url = "http://127.0.0.1:11434",
       serve = {
         on_start = true,
@@ -280,7 +280,7 @@ local default_plugins = {
         Sample_Prompt = {
           prompt = "This is a sample prompt that receives $input and $sel(ection), among others.",
           input_label = "> ",
-          model = "mixtral",
+          model = "codellama:70b",
           action = "display",
         }
   }
