@@ -28,6 +28,28 @@ local default_plugins = {
   --     require("nvterm").setup(opts)
   --   end,
   -- },
+    --
+ {
+  "nvim-lualine/lualine.nvim",
+  optional = true,
+
+  opts = function(_, opts)
+    table.insert(opts.sections.lualine_x, {
+      function()
+        local status = require("ollama").status()
+
+        if status == "IDLE" then
+          return "󱙺" -- nf-md-robot-outline
+        elseif status == "WORKING" then
+          return "󰚩" -- nf-md-robot
+        end
+      end,
+      cond = function()
+        return package.loaded["ollama"] and require("ollama").status() ~= nil
+      end,
+    })
+  end,
+},
 
   {
     "NvChad/nvim-colorizer.lua",
@@ -290,21 +312,21 @@ local default_plugins = {
     }
   },
 
-  -- TODO comments
-  {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      keywords = {
-        FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
-        TODO = { icon = " ", color = "info", alt = { "NOTE" } },
-        HACK = { icon = " ", color = "warning", alt = { "TRICK" } },
-        XXX = { icon = " ", color = "warning", alt = { "TRICK" } },
-        WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
-      },
-      filetypes = { "*" },
-    }
-  },
+  -- TODO comments (does not fucking work!!)
+  -- {
+  --   "folke/todo-comments.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   opts = {
+  --     keywords = {
+  --       FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+  --       TODO = { icon = " ", color = "info", alt = { "NOTE" } },
+  --       HACK = { icon = " ", color = "warning", alt = { "TRICK" } },
+  --       XXX = { icon = " ", color = "warning", alt = { "TRICK" } },
+  --       WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
+  --     },
+  --     filetypes = { "*" },
+  --   }
+  -- },
 }
 
 local config = require("core.utils").load_config()
