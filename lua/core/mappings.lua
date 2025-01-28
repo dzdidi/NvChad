@@ -64,6 +64,13 @@ M.general = {
       end,
       "Previous todo comment"
     },
+    -- ...
+    ["<leader>tt"] = {
+      function()
+        require("base46").toggle_transparency()
+      end,
+      "Toggle transparency",
+    },
   },
 
   t = {
