@@ -17,19 +17,30 @@ opt.colorcolumn = "120"
 opt.cursorline = true
 
 -- Indenting
--- opt.expandtab = true
--- opt.shiftwidth = 2
--- opt.smartindent = true
--- opt.tabstop = 2
--- opt.softtabstop = 2
--- opt.smarttab = true
 
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.smartindent = true
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.smarttab = true
+  -- 2 spaces
+  -- opt.expandtab = true
+  -- opt.shiftwidth = 2
+  -- opt.smartindent = true
+  -- opt.tabstop = 2
+  -- opt.softtabstop = 2
+  -- opt.smarttab = true
+
+  -- TABS
+  -- opt.expandtab = false
+  -- opt.shiftwidth = 4
+  -- opt.smartindent = true
+  -- opt.tabstop = 4
+  -- opt.softtabstop = 4
+  -- opt.smarttab = true
+
+  -- 4 spaces
+  opt.expandtab = true
+  opt.shiftwidth = 4
+  opt.smartindent = true
+  opt.tabstop = 4
+  opt.softtabstop = 4
+  opt.smarttab = true
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
