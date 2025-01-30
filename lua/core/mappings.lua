@@ -223,14 +223,14 @@ M.lspconfig = {
       function()
         vim.diagnostic.goto_prev { float = { border = "rounded" } }
       end,
-      "Goto prev",
+      "Goto previous LSP error or warning",
     },
 
     ["]d"] = {
       function()
         vim.diagnostic.goto_next { float = { border = "rounded" } }
       end,
-      "Goto next",
+      "Goto next LSP error or warning",
     },
 
     ["<leader>q"] = {

@@ -11,6 +11,8 @@ M.on_attach = function(client, bufnr)
   if client.server_capabilities.signatureHelpProvider then
     require("nvchad.signature").setup(client)
   end
+
+  -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
 -- disable semantic tokens
@@ -61,6 +63,33 @@ require("lspconfig").lua_ls.setup {
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
+    },
+  },
+}
+
+require('lspconfig').rust_analyzer.setup {
+  on_init = M.on_init,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+        diagnostics = {
+          enable = true;
+        },
+        imports = {
+            granularity = {
+                group = "module",
+            },
+            prefix = "self",
+        },
+        cargo = {
+            buildScripts = {
+                enable = true,
+            },
+        },
+        procMacro = {
+            enable = true
+        },
     },
   },
 }
