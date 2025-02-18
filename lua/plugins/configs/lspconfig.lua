@@ -12,7 +12,7 @@ M.on_attach = function(client, bufnr)
     require("nvchad.signature").setup(client)
   end
 
-  -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
 -- disable semantic tokens
@@ -23,7 +23,7 @@ M.on_init = function(client, _)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities.offsetEncoding = { "utf-16" }
+-- M.capabilities.offsetEncoding = { "utf-16" }
 
 M.capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
@@ -90,8 +90,34 @@ require('lspconfig').rust_analyzer.setup {
         procMacro = {
             enable = true
         },
+        inlayHints = {
+            enable = true,
+            -- Customize hint kinds
+            typeHints = {
+                enable = true,
+                separator = ":",
+            },
+            parameterHints = {
+                enable = true,
+                separator = ":",
+            },
+            chainingHints = {
+                enable = true,
+            },
+            maxLength = 25,
+            -- Hint location
+            locationMode = "end", -- or "start" or "end_line"
+        }
     },
   },
+}
+
+require('lspconfig').ts_ls.setup {
+  on_init = M.on_init,
+  on_attach = M.on_attach,
+  capabilities = M.capabilities,
+  settings = {
+  }
 }
 
 return M
