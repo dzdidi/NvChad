@@ -19,3 +19,7 @@ end
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
 require "plugins"
+
+-- Spellcheck
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
