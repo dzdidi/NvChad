@@ -420,6 +420,7 @@ local default_plugins = {
                 hgcommit = false,
                 svn = false,
                 cvs = false,
+                rust = true,
                 ["."] = false,
               },
               copilot_node_command = 'node', -- Node.js version must be > 18.x
@@ -440,6 +441,35 @@ local default_plugins = {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
         }
+    },
+
+    -- color scheme
+    {
+        "rebelot/kanagawa.nvim",
+        opts = {
+            compile = true,             -- enable compiling the colorscheme
+            undercurl = true,            -- enable undercurls
+            commentStyle = { italic = true, bold = true },
+            functionStyle = {},
+            keywordStyle = { italic = true},
+            statementStyle = { bold = true },
+            typeStyle = {},
+            transparent = true,         -- do not set background color
+            dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+            terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+            colors = {                   -- add/modify theme and palette colors
+                palette = {},
+                theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+            },
+            overrides = function(colors) -- add/modify highlights
+                return {}
+            end,
+            theme = "wave",              -- Load "wave" theme
+            background = {               -- map the value of 'background' option to a theme
+                dark = "wave",           -- try "dragon" !
+                light = "lotus"
+            },
+        }
     }
 }
 
@@ -451,3 +481,4 @@ if #config.plugins > 0 then
 end
 
 require("lazy").setup(default_plugins, config.lazy_nvim)
+vim.cmd("colorscheme kanagawa")

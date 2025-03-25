@@ -15,6 +15,7 @@ opt.clipboard = "unnamedplus"
 opt.cursorcolumn = true
 opt.colorcolumn = "120"
 opt.cursorline = true
+opt.cursorlineopt = "number"
 
 -- Indenting
 
